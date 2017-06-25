@@ -1,48 +1,86 @@
 package com.niit.shoppingbackend.daoimpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingbackend.dto.Category;
 import com.nit.shoppingbackend.dao.CategoryDAO;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
-
-	private static List<Category> categories = new ArrayList<>();
-
-	static {
-		Category category = new Category();
-		category.setId(1);
-		category.setName("Computer");
-		category.setDescription("Computer is a machine.");
-		category.setImageUrl("CAT_1.png");
-		categories.add(category);
-		
-		category = new Category();
-		category.setId(2);
-		category.setName("Mobile");
-		category.setDescription("Mobile is a phome.");
-		category.setImageUrl("CAT_2.png");
-		categories.add(category);
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	private Session getSession(){
+		return sessionFactory.getCurrentSession();
 	}
+
+	private static List<Category> categories ;
+
+	
 
 	@Override
 	public List<Category> list() {
+		String selectActiveCategory = "from Category where active = :active";
+		Query query=getSession().createQuery(selectActiveCategory);
+		query.setParameter("active", true);
+		return query.getResultList();
+	}
+
+	/*
+	 * Getting single category based on id
+	 * */
+	@Override
+	public Category get(int id) {
 		
-		return categories;
+		return getSession().get(Category.class, Integer.valueOf(id));		
+	}
+
+	@Override	
+	public boolean add(Category category) {
+		try{
+			//add the category to the database
+			getSession().persist(category);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		    return false;
+		}
+	}
+
+	/*
+	 * Updating a single category based on id
+	 * */
+	@Override
+	public boolean update(Category category) {
+		try{
+			//add the category to the database
+			getSession().update(category);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		    return false;
+		}
 	}
 
 	@Override
-	public Category get(int id) {
-		//enhanced for loop
-		for(Category category : categories){
-			if(category.getId()==id)
-				return category;
+	public boolean delete(Category category) {
+		try{
+			//add the category to the database
+			getSession().delete(category);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+		    return false;
 		}
-		return null;
 	}
 
 }
