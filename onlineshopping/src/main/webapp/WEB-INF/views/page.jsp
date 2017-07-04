@@ -25,12 +25,17 @@
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
+	
+	window.contextRoot = '${contextRoot}';
 </script>
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Readable theme CSS -->
 <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
-
+<!-- Bootstrap DataTables -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+<!-- JQuery DataTables -->
+<link href="${css}/jquery.dataTables.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
@@ -77,8 +82,8 @@
 			</c:if>
 
 		</div>
-		
-		
+
+
 		<!-- FOOTER comes here -->
 		<%@ include file="./shared/footer.jsp"%>
 
@@ -88,8 +93,16 @@
 		<!-- jQuery -->
 		<script src="${js}/jquery.js"></script>
 
+
+
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+
+		<!-- DataTable Plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+
+		<!-- DataTable Bootstrap Script -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
 
 		<!-- Self coded javascript -->
 		<script src="${js}/myapp.js"></script>
