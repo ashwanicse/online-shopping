@@ -25,7 +25,7 @@
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
-	
+
 	window.contextRoot = '${contextRoot}';
 </script>
 <!-- Bootstrap Core CSS -->
@@ -80,6 +80,12 @@
 				test="${userClickAllProducts==true or userClickCategoryProducts==true}">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
+
+			<!-- Load only when user clicks Show Product  -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
+
 
 		</div>
 
