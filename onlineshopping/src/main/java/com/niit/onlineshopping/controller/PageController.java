@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.onlineshopping.exception.ProductNotFoundException;
 import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
 import com.nit.shoppingbackend.dao.CategoryDAO;
@@ -15,7 +16,7 @@ import com.nit.shoppingbackend.dao.ProductDAO;
 
 @Controller
 public class PageController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
 	@Autowired
@@ -89,10 +90,13 @@ public class PageController {
 	 * Viewing single product
 	 */
 	@RequestMapping(value = "/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable("id") int id) {
+	public ModelAndView showSingleProduct(@PathVariable("id") int id) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 
 		Product product = productDAO.get(id);
+
+		if (product == null)
+			throw new ProductNotFoundException();
 
 		// update the view count
 		product.setViews(product.getViews() + 1);
