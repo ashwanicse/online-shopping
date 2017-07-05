@@ -25,9 +25,11 @@
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
-
-	window.contextRoot = '${contextRoot}';
+	
+	window.contextRoot = '${contextRoot}'
+	
 </script>
+
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Readable theme CSS -->
@@ -60,32 +62,36 @@
 
 		<div class="content">
 
-			<!-- Load only when user clicks home  -->
-			<c:if test="${userClickHome==true}">
+			<!-- Loading the home content -->
+			<c:if test="${userClickHome == true }">
 				<%@include file="home.jsp"%>
 			</c:if>
 
-			<!-- Load only when user clicks about  -->
-			<c:if test="${userClickAbout==true}">
+			<!-- Load only when user clicks about -->
+			<c:if test="${userClickAbout == true }">
 				<%@include file="about.jsp"%>
 			</c:if>
 
-			<!-- Load only when user clicks contact  -->
-			<c:if test="${userClickContact==true}">
+			<!-- Load only when user clicks contact -->
+			<c:if test="${userClickContact == true }">
 				<%@include file="contact.jsp"%>
 			</c:if>
-
-			<!-- Load only when user clicks All products and Category  -->
-			<c:if
-				test="${userClickAllProducts==true or userClickCategoryProducts==true}">
+			
+			<!-- Load only when user clicks contact -->
+			<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true }">
 				<%@include file="listProducts.jsp"%>
-			</c:if>
-
-			<!-- Load only when user clicks Show Product  -->
-			<c:if test="${userClickShowProduct==true}">
+			</c:if>	
+			
+			
+			<!-- Load only when user clicks show product -->
+			<c:if test="${userClickShowProduct == true}">
 				<%@include file="singleProduct.jsp"%>
-			</c:if>
+			</c:if>								
 
+			<!-- Load only when user clicks manage products -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>	
 
 		</div>
 
