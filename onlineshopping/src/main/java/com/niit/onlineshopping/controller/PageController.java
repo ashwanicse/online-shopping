@@ -109,6 +109,14 @@ public class PageController {
 		mv.addObject("userClickShowProduct", true);
 		return mv;
 	}
+	
+	//if we having similar mapping to our flow id
+	@RequestMapping(value = "/register")
+	public ModelAndView register(){
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Register");
+		return mv;
+	}
 
 	// http://localhost:8081/onlineshopping/test
 	// http://localhost:8081/onlineshopping/test?greeting=Welcome to spring

@@ -1,111 +1,99 @@
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@include file="../shared/flows-header.jsp"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<div class="container">
 
-<s:url var="css" value="/resources/css" />
-<s:url var="js" value="/resources/js" />
-<s:url var="images" value="/resources/images" />
+	<div class="row">
 
-<c:set var="contextRoot" value="${pageContext.request.contextPath}"></c:set>
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-primary">
+
+				<div class="panel-heading">
+					<h4>Sign Up - Personal</h4>
+				</div>
+
+				<div class="panel-body">
+
+					<sf:form method="POST" class="form-horizontal" id="registerForm" modelAttribute="user">
 
 
-<!DOCTYPE html>
-<html lang="en">
+						<div class="form-group">
+							<label class="control-label col-md-4">First Name</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="firstName" class="form-control" placeholder="First Name" />
+								<sf:errors path="firstName" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-<head>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+						<div class="form-group">
+							<label class="control-label col-md-4">Last Name</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="lastName" class="form-control" placeholder="Last Name" />
+								<sf:errors path="lastName" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-<title>Online Shopping - ${title}</title>
-<script>
-	window.menu = '${title}';
-	
-	window.contextRoot = '${contextRoot}'
-	
-</script>
+						<div class="form-group">
+							<label class="control-label col-md-4">Email</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="email" class="form-control" placeholder="abc@zyx.com" />
+								<sf:errors path="email" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-<!-- Bootstrap Core CSS -->
-<link href="${css}/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap Readable theme CSS -->
-<link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
-<!-- Bootstrap DataTables -->
-<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
-<!-- JQuery DataTables -->
-<link href="${css}/jquery.dataTables.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="${css}/myapp.css" rel="stylesheet">
+						<div class="form-group">
+							<label class="control-label col-md-4">Contact Number</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="contactNumber" class="form-control" placeholder="XXXXXXXXXX" maxlength="10" />
+								<sf:errors path="contactNumber" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+						<div class="form-group">
+							<label class="control-label col-md-4">Password</label>
+							<div class="col-md-8">
+								<sf:input type="password" path="password" class="form-control" placeholder="Password" />
+								<sf:errors path="password" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-</head>
+						<div class="form-group">
+							<label class="control-label col-md-4">Confirm Password</label>
+							<div class="col-md-8">
+								<sf:input type="password" path="confirmPassword" class="form-control" placeholder="Re-enter Password" />
+								<sf:errors path="confirmPassword" cssClass="help-block" element="em" />
+							</div>
+						</div>
 
-<body>
 
-	<div class="wrapper">
+						<!-- radio button using bootstrap class of radio-inline -->
+						<div class="form-group">
+							<label class="control-label col-md-4">Select Role</label>
+							<div class="col-md-8">
+								<label class="radio-inline">
+								       <sf:radiobutton path="role" value="USER" checked="checked" /> User</label> 
+								 <label class="radio-inline"> 
+								      <sf:radiobutton path="role" value="SUPPLIER" /> Supplier</label>
+							</div>
+						</div>
 
-<!-- navigation  -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand" href="${flowExecutionUrl}&_eventId_home">Home</a>
-		</div>
-		</div>
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<button type="submit" class="btn btn-primary" name="_eventId_billing">Next - Billing 
+								    <span class="glyphicon glyphicon-chevron-right"></span>
+								</button>
 
-</nav>
+							</div>
+						</div>
 
-		<!-- **************Page Content**********************  -->
-
-		<div class="content">
-
-			<div class="container">
-			   This will be triggered by flow
+					</sf:form>
+				</div>
 			</div>
-
 		</div>
-
-
-		<!-- FOOTER comes here -->
-		<%@ include file="../../shared/footer.jsp"%>
-
-
-
-
-		<!-- jQuery -->
-		<script src="${js}/jquery.js"></script>
-
-       <!-- jQuery validator -->
-		<script src="${js}/jquery.validate.js"></script>
-		
-		
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="${js}/bootstrap.min.js"></script>
-
-		<!-- DataTable Plugin -->
-		<script src="${js}/jquery.dataTables.js"></script>
-
-		<!-- DataTable Bootstrap Script -->
-		<script src="${js}/dataTables.bootstrap.js"></script>
-		
-			<!-- Bootbox Script -->
-		<script src="${js}/bootbox.min.js"></script>
-
-		<!-- Self coded javascript -->
-		<script src="${js}/myapp.js"></script>
-
 	</div>
-</body>
 
-</html>
+</div>
+
+<%@include file="../shared/flows-footer.jsp"%>

@@ -31,30 +31,30 @@ public class User implements Serializable{
 	private int id;
 	
 	@Column(name = "first_name")
-	//@NotBlank(message = "Please enter first name!")
+	@NotBlank(message = "Please enter first name!")
 	private String firstName;
 	
 	@Column(name = "last_name")
-	//@NotBlank(message = "Please enter last name!")
+	@NotBlank(message = "Please enter last name!")
 	private String lastName;
 	
-	//@NotBlank(message = "Please enter email address!")
+	@NotBlank(message = "Please enter email address!")
 	private String email;
 	
 	@Column(name = "contact_number")
-	//@NotBlank(message = "Please enter contact number!")
+	@NotBlank(message = "Please enter contact number!")
 	private String contactNumber;
 	
 	private String role;
 	
-	//@NotBlank(message = "Please enter password!")
+	@NotBlank(message = "Please enter password!")
 	private String password;
 	
 	private boolean enabled = true;
 	
 	
 	// confirm password transient field
-/*	@Transient
+	@Transient
 	private String confirmPassword;
 		
 	public String getConfirmPassword() {
@@ -63,8 +63,8 @@ public class User implements Serializable{
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-*/               // here is user is var in child (Cart) , and cascade type is used to perform all operation at child class side
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+               // here is user is var in child (Cart) , and cascade type is used to perform all operation at child class side
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Cart cart;
 	public Cart getCart() {
 		return cart;
