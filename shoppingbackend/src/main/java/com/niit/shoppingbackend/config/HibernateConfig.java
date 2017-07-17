@@ -33,7 +33,7 @@ public class HibernateConfig {
 	private static String DATABASE_USERNAME = "sa";
 	private static String DATABASE_PASSWORD = "ashwani";
 
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		// BasicDataSource ds=new BasicDataSource();
 		DriverManagerDataSource ds = new DriverManagerDataSource();

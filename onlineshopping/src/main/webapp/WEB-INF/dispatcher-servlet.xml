@@ -18,7 +18,7 @@
 	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="com.niit.onlineshopping.*" />
-	<context:component-scan base-package="com.niit.shoppingbackend.*" />
+	
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
