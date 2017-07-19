@@ -22,6 +22,18 @@ $(function() {
 		break;		
 	}
 	
+	// to tackle the csrf token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if(token.length > 0 && header.length > 0) {		
+		// set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options) {	//xml http request which soul of ajax		
+			xhr.setRequestHeader(header,token);
+			
+		});				
+	}
+	
 	//code for jquery data tables
 	
 	
@@ -85,15 +97,9 @@ $(function() {
 		        		  
 		        		  var str = '';
 		        		  str += '<a href="'+window.contextRoot+ '/show/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-
-		        		  if(row.quantity < 1) {
-		        			  str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-		        		  }
-		        		  else {
-		        			  str += '<a href="'+window.contextRoot+ '/cart/add/'+data+'/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';  
-		        		  }
-		        		  
-		        		  /*if(userRole == 'ADMIN') {
+               
+		        		        		  
+		        		  if(userRole == 'ADMIN') {
 		        			  str += '<a href="'+window.contextRoot+ '/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
 		        		  }
 		        		  else {
@@ -103,8 +109,7 @@ $(function() {
 			        		  else {
 			        			  str += '<a href="'+window.contextRoot+ '/cart/add/'+data+'/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';  
 			        		  }
-		        		  }*/
-		        		  
+		        		  }	        		  
 		        		  			        		  
 		        		  
 		        		  return str;
@@ -284,6 +289,57 @@ if($categoryForm.length) {
 	
 }
 
+//------------------------
+//Validation code for login form
+
+var $loginForm = $('#loginForm');
+
+if($loginForm.length) {
+	
+	$loginForm.validate({
+		
+		rules : {
+			
+			username : {
+				
+				required: true,
+				email: true
+				
+			},
+			
+			password: {
+				required: true
+			}
+			
+		},
+		
+		messages : {
+			
+			username : {
+				
+				required: 'Please enter the username!',
+				email: 'Please enter valid email address!'
+				
+			},
+			
+			password: {
+				
+				required: 'Please enter the password!'
+			}
+			
+			
+		},
+		errorElement: 'em',
+		errorPlacement: function(error, element) {
+			// add the class of help-block
+			error.addClass('help-block');
+			// add the error element after the input element
+			error.insertAfter(element);				
+		}
+	});
+	
+	
+}
 
 
 // dismissing the alert after 3 seconds
